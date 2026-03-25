@@ -9,7 +9,7 @@ A full-stack notes app built with:
 ## Submission Links
 
 - GitHub Repository: `https://github.com/Alchemyyyy/note_application.git`
-- GitHub Pages URL: `https://<your-username>.github.io/<your-repo>/`
+- GitHub Pages URL: `https://alchemyyyy.github.io/note_application/`
 
 Replace placeholders after creating your GitHub repository and enabling Pages.
 
@@ -47,4 +47,4 @@ This repo includes a workflow at `.github/workflows/deploy-pages.yml` that deplo
 
 After deployment, Pages URL will be:
 
-`https://<your-username>.github.io/<repo-name>/`
+`https://alchemyyyy.github.io/note_application/`

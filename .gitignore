@@ -1,0 +1,42 @@
+# OS
+.DS_Store
+
+# IDE/editor
+.vs/
+.vscode/
+.idea/
+
+# Environment/secrets
+.env
+.env.*
+*.env
+*.key
+*.pem
+*.pfx
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# .NET build artifacts
+**/bin/
+**/obj/
+
+# Test results
+TestResults/
+coverage/
+*.coverage
+*.trx
+
+# NuGet
+*.nupkg
+.nuget/
+
+# Docker overrides/local files
+docker-compose.override.yml

@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    platform: linux/amd64
+    container_name: notes_sqlserver
+    user: "0:0"
+    environment:
+      - ACCEPT_EULA=Y
+      # Changed to the official MSSQL_SA_PASSWORD variable
+      - MSSQL_SA_PASSWORD=Sambath@2026
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+      - ./init-db.sql:/init-db.sql:ro
+    healthcheck:
+      # Using single $ and the correct variable name for the health check
+      test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'Sambath@2026' -Q 'SELECT 1' >/dev/null 2>&1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  db_init:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    platform: linux/amd64
+    container_name: notes_db_init
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Sambath@2026
+    volumes:
+      - ./init-db.sql:/init-db.sql:ro
+    entrypoint: ["/bin/sh", "-c"]
+    # Pointing to the 'sqlserver' service name as the host
+    command: >
+      /opt/mssql-tools/bin/sqlcmd -S sqlserver -U SA -P "Sambath@2026" -i /init-db.sql
+    restart: "no"
+
+volumes:
+  sqlserver_data:

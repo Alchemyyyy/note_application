@@ -11,8 +11,6 @@ A full-stack notes app built with:
 - GitHub Repository: `https://github.com/Alchemyyyy/note_application.git`
 - GitHub Pages URL: `https://alchemyyyy.github.io/note_application/`
 
-Replace placeholders after creating your GitHub repository and enabling Pages.
-
 ## Run Locally
 
 ### Backend
@@ -37,7 +35,7 @@ dotnet test backend/NotesApp.Tests/NotesApp.Tests.csproj -v minimal
 
 ## GitHub Pages Deployment
 
-This repo includes a workflow at `.github/workflows/deploy-pages.yml` that deploys the frontend automatically on pushes to `main`.
+This repo includes `.github/workflows/deploy-pages.yml` to deploy frontend on push to `main`.
 
 ### Required one-time GitHub settings
 
@@ -45,6 +43,6 @@ This repo includes a workflow at `.github/workflows/deploy-pages.yml` that deplo
 2. Under `Build and deployment`, set `Source` to `GitHub Actions`.
 3. Push to `main`.
 
-After deployment, Pages URL will be:
+Pages URL:
 
 `https://alchemyyyy.github.io/note_application/`

@@ -10,6 +10,8 @@
 .env
 .env.*
 *.env
+frontend/.env
+frontend/.env.*
 *.key
 *.pem
 *.pfx

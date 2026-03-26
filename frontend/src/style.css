@@ -3,11 +3,45 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    color-scheme: light;
+  }
+
   body {
-    @apply bg-slate-50 text-slate-900 font-sans antialiased;
+    @apply bg-slate-50 text-slate-900 antialiased;
+    font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
     margin: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  }
+
+  * {
+    @apply box-border;
+  }
+
+  ::selection {
+    @apply bg-emerald-200 text-slate-900;
+  }
+}
+
+@layer utilities {
+  .slide-fade-enter-active,
+  .slide-fade-leave-active {
+    transition: all 0.2s ease;
+  }
+
+  .slide-fade-enter-from,
+  .slide-fade-leave-to {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  .list-enter-active,
+  .list-leave-active {
+    transition: all 0.2s ease;
+  }
+
+  .list-enter-from,
+  .list-leave-to {
+    opacity: 0;
+    transform: translateY(8px);
   }
 }

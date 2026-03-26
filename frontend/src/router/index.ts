@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import LoginView from '../views/LoginView.vue'
 import NotesView from '../views/NotesView.vue'
 import RegisterView from '../views/RegisterView.vue'
@@ -6,7 +6,7 @@ import RegisterView from '../views/RegisterView.vue'
 const AUTH_TOKEN_KEY = 'notes_auth_token'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',

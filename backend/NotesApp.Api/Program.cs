@@ -108,6 +108,7 @@ if (corsOrigins.Count == 0)
 {
     corsOrigins.Add("http://localhost:5173");
     corsOrigins.Add("http://127.0.0.1:5173");
+    corsOrigins.Add("https://alchemyyyy.github.io");
 }
 
 builder.Services.AddCors(options =>

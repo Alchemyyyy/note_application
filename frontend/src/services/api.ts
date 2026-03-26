@@ -7,7 +7,7 @@ const apiBaseUrl = rawApiBaseUrl.replace(/\/+$/, '')
 
 export const api = axios.create({
   baseURL: apiBaseUrl,
-  timeout: 10000,
+  timeout: 30000,
   headers: {
     'Content-Type': 'application/json',
   },

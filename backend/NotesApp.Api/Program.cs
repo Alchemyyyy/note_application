@@ -97,16 +97,27 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-// Configure CORS for Vue frontend
+// Configure CORS for Vue frontend (local + hosted frontend origins)
+var configuredOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>();
+var corsOrigins = (configuredOrigins is { Length: > 0 } ? configuredOrigins : Array.Empty<string>())
+    .SelectMany(origin => origin.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries))
+    .Distinct(StringComparer.OrdinalIgnoreCase)
+    .ToList();
+
+if (corsOrigins.Count == 0)
+{
+    corsOrigins.Add("http://localhost:5173");
+    corsOrigins.Add("http://127.0.0.1:5173");
+}
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowFrontend",
-        policy =>
-        {
-            policy.WithOrigins("http://localhost:5173", "http://127.0.0.1:5173") 
-                  .AllowAnyHeader()
-                  .AllowAnyMethod();
-        });
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.WithOrigins(corsOrigins.ToArray())
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
 });
 
 var app = builder.Build();

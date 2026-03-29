@@ -132,7 +132,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseMiddleware<GlobalExceptionMiddleware>();
 
-app.UseHttpsRedirection();
+// On Render, TLS is terminated at the edge proxy. Redirect only in local/dev host.
+if (app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
 
 app.UseCors("AllowFrontend");
 
